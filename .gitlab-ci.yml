@@ -1,0 +1,119 @@
+image: node:22.0.0
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  # https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html#2-enforce-the-lockfile
+  - npm ci
+
+stages:
+  - validate
+  - lint
+  - build
+  - test
+  - storybook
+  - chromatic
+  - lighthouse
+
+commitlint:
+  stage: validate
+  script:
+    - npx commitlint --from=HEAD~1 --to=HEAD --verbose
+
+format:
+  stage: validate
+  script:
+    - npm run format:check
+
+mr-size:
+  stage: validate
+  only:
+    - merge_requests
+  script:
+    - git fetch origin $CI_MERGE_REQUEST_TARGET_BRANCH_NAME:target_branch
+    - git fetch origin $CI_COMMIT_SHA
+    - |
+      LINES_CHANGED=$(git diff --stat target_branch...$CI_COMMIT_SHA | awk 'BEGIN {total=0} !/\.(svg)$/ && !/yarn\.lock$/ {total+=$3} END {print total}')
+      echo "Total lines changed (excluding .svg and yarn.lock): $LINES_CHANGED"
+      if [ "$LINES_CHANGED" -gt 250 ]; then
+        echo "❌ Error: MR contains more than 250 lines of changes (excluding .svg and yarn.lock files)"
+        echo "Please split this MR into smaller ones"
+        exit 1
+      fi
+
+lint:
+  stage: lint
+  script:
+    - npm run lint
+
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - .next/
+
+storybook:
+  stage: storybook
+  script:
+    - npm run build-storybook
+  artifacts:
+    paths:
+      - storybook-static/
+
+chromatic:
+  stage: chromatic
+  script:
+    - npm run chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes
+  only:
+    - merge_requests
+    - main
+
+sonarqube-check:
+  stage: test
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: ['']
+  variables:
+    SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar' # Defines the location of the analysis task cache
+    GIT_DEPTH: '0' # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: '${CI_JOB_NAME}'
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  allow_failure: true
+  only:
+    - main
+
+unit-tests:
+  stage: test
+  script:
+    - npm run test:coverage
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/lcov.info
+    paths:
+      - coverage/
+
+lighthouse:
+  stage: lighthouse
+  script:
+    - npm run build
+    - npm run lighthouse
+  allow_failure: true
+  artifacts:
+    when: always
+    paths:
+      - ./lighthouse/
+      - ./lighthouse-report.json
+  only:
+    - merge_requests
+    - main

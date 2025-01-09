@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm should match snapshot 1`] = `
+<div>
+  <form
+    action="javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')"
+    class="space-y-3"
+  >
+    <div
+      class="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8"
+    >
+      <h1
+        class="mb-3 text-2xl"
+      >
+        Please log in to continue.
+      </h1>
+      <div
+        class="text-sm text-gray-500"
+      >
+        Use 
+        <code>
+          test@example.com
+        </code>
+         and 
+        <code>
+          password123
+        </code>
+         to log in.
+      </div>
+      <div
+        class="w-full"
+      >
+        <div
+          aria-atomic="true"
+          aria-live="polite"
+          class="flex h-8 items-end space-x-1"
+        />
+        <div>
+          <label
+            class="mb-3 mt-5 block text-xs font-medium text-gray-900"
+            for="email"
+          >
+            Email
+          </label>
+          <div
+            class="relative"
+          >
+            <input
+              class="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+              id="email"
+              name="email"
+              placeholder="Enter your email address"
+              required=""
+              type="email"
+            />
+            <svg
+              class="lucide lucide-mail pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                height="16"
+                rx="2"
+                width="20"
+                x="2"
+                y="4"
+              />
+              <path
+                d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="mt-4"
+        >
+          <label
+            class="mb-3 mt-5 block text-xs font-medium text-gray-900"
+            for="password"
+          >
+            Password
+          </label>
+          <div
+            class="relative"
+          >
+            <input
+              class="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+              id="password"
+              minlength="6"
+              name="password"
+              placeholder="Enter password"
+              required=""
+              type="password"
+            />
+            <svg
+              class="lucide lucide-key pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"
+              />
+              <path
+                d="m21 2-9.6 9.6"
+              />
+              <circle
+                cx="7.5"
+                cy="15.5"
+                r="5.5"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-disabled="false"
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 mt-4 w-full"
+      >
+        Log in 
+        <svg
+          class="lucide lucide-arrow-right ml-auto h-5 w-5 text-gray-50"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 12h14"
+          />
+          <path
+            d="m12 5 7 7-7 7"
+          />
+        </svg>
+      </button>
+    </div>
+  </form>
+</div>
+`;

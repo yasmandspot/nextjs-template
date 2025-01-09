@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should match snapshot 1`] = `
+<div>
+  <footer
+    class="bg-gray-800 py-4 text-white"
+  >
+    <div
+      class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+    >
+      <p
+        class="text-center text-sm"
+      >
+        © 
+        2025
+         DSpot Next.js 15 Template. All rights reserved.
+      </p>
+    </div>
+  </footer>
+</div>
+`;
