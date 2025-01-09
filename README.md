@@ -18,7 +18,7 @@ A modern Next.js template with a robust development setup.
 
 ## Getting Started
 
-First, install the dependencies:
+First, install all dependencies:
 
 ```bash
 yarn install
