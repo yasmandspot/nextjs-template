@@ -146,7 +146,9 @@ jobs:
         run: npm ci
 
       - name: Publish to Chromatic
-        run: npm run chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --exit-zero-on-changes
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        run: npm run chromatic -- --exit-zero-on-changes
 
   lighthouse:
     runs-on: ubuntu-latest
